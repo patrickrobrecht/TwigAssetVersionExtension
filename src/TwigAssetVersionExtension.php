@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace railto;
 
 class TwigAssetVersionExtension extends \Twig_Extension
 {
