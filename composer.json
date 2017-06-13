@@ -1,0 +1,16 @@
+{
+    "name": "railto/twig-asset-version-extension",
+    "description": "A twig extension for working with versioned assets using a rev-manifest file",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Mark Railton",
+        "email": "mark@markrailton.com"
+    }],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "railto\\": "src/"
+        }
+    }
+}
