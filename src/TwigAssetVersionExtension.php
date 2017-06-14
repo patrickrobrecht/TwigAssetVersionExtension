@@ -2,7 +2,11 @@
 
 namespace railto;
 
-class TwigAssetVersionExtension extends \Twig_Extension
+use Twig_Extension;
+use Twig_SimpleFilter;
+use Exception;
+
+class TwigAssetVersionExtension extends Twig_Extension
 {
     private $manifest;
 
@@ -14,7 +18,7 @@ class TwigAssetVersionExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('asset_version', array($this, 'getAssetVersion')),
+            new Twig_SimpleFilter('asset_version', array($this, 'getAssetVersion')),
         );
     }
 
@@ -22,11 +26,11 @@ class TwigAssetVersionExtension extends \Twig_Extension
     {
         $manifestPath = $this->manifest;
         if (!file_exists($manifestPath)) {
-            throw new \Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
+            throw new Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
         }
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[$filename])) {
-            throw new \Exception(sprintf('There is no file "%s" in the version manifest!', $filename));
+            throw new Exception(sprintf('There is no file "%s" in the version manifest!', $filename));
         }
         return $paths[$filename];
     }
