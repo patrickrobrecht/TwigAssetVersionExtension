@@ -2,19 +2,18 @@
 
 namespace Railto;
 
-use Twig_Extension;
+use Twig\Extension\AbstractExtension;
 use Exception;
-use Twig_Filter;
+use Twig\TwigFilter;
 
 /**
  * Class TwigAssetVersionExtension
  * @package Railto\TwigAssetVersionExtension
- * @author
  */
-class TwigAssetVersionExtension extends Twig_Extension
+class TwigAssetVersionExtension extends AbstractExtension
 {
     /**
-     * @var
+     * @var string
      */
     private $manifest;
 
@@ -33,7 +32,7 @@ class TwigAssetVersionExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            new Twig_Filter('asset_version', array($this, 'getAssetVersion')),
+            new TwigFilter('asset_version', array($this, 'getAssetVersion')),
         );
     }
 

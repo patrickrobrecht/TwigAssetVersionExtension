@@ -10,43 +10,43 @@ class TwigAssetVersionExtensionTest extends TestCase
     /**
      * @test
      */
-    public function extensionObjectInstantiates()
+    public function extensionObjectInstantiates(): void
     {
         $extension = new TwigAssetVersionExtension(__DIR__.'/rev-manifest.json');
 
-        $this->assertTrue(is_object($extension));
+        self::assertIsObject($extension);
     }
 
     /**
      * @test
      */
-    public function extensionReturnsValidData()
+    public function extensionReturnsValidData(): void
     {
         $extension = new TwigAssetVersionExtension(__DIR__.'/rev-manifest.json');
 
-        $this->assertEquals('css/app-1f56b8a83a.css', $extension->getAssetVersion('css/app.css'));
-        $this->assertEquals('css/admin-8364d07654.css', $extension->getAssetVersion('css/admin.css'));
+        self::assertEquals('css/app-1f56b8a83a.css', $extension->getAssetVersion('css/app.css'));
+        self::assertEquals('css/admin-8364d07654.css', $extension->getAssetVersion('css/admin.css'));
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
-    public function extensionThrowsExceptionOnInvalidFile()
+    public function extensionThrowsExceptionOnInvalidFile(): void
     {
-        $extension = new TwigAssetVersionExtension(__DIR__.'/rev-manifest.json');
+        $this->expectException(\Exception::class);
 
+        $extension = new TwigAssetVersionExtension(__DIR__.'/rev-manifest.json');
         $extension->getAssetVersion('no/file.exists');
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
-    public function extensionThrowsExceptionIfNoManifestFileIsProvided()
+    public function extensionThrowsExceptionIfNoManifestFileIsProvided(): void
     {
-        $extension = new TwigAssetVersionExtension(__DIR__.'/no-manifest.json');
+        $this->expectException(\Exception::class);
 
+        $extension = new TwigAssetVersionExtension(__DIR__.'/no-manifest.json');
         $extension->getAssetVersion('css/admin.css');
     }
 }

@@ -26,5 +26,5 @@ $twig->addExtension(new Railto\TwigAssetVersionExtension(__DIR__. '/../public/re
 
 ## Testing
 
-- Coding Standard: ```vendor/bin/phpcs```
-- Unit Tests: ```vendor/bin/phpunit```
+- Coding Standard: ```composer cs```
+- Unit Tests: ```composer test```
